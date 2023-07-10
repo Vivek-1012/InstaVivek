@@ -45,6 +45,35 @@ export const AuthProvider = ({children}) =>{
                 Navigate("/")
             }
 
+            
+
+        }catch(e){
+            console.error(e)
+        }
+    }
+
+    const handleGuestToLogin = async ()=>{
+        try{
+
+            const response = await fetch("/api/auth/login",{
+             method:"POST",
+             body: JSON.stringify({username:"harshityadav",password:"harshityadav123"})
+            })
+            if(response.status === 200){
+                const {foundUser,encodedToken}= await response.json()
+
+                setuserLogin((prev)=>({...prev,user:{...foundUser}}))
+                setNewUserProfile(foundUser)
+                console.log(foundUser)
+                
+                console.log(userLogin,"Login ")   
+                localStorage.setItem("token",encodedToken)
+                console.log(encodedToken)
+                Navigate("/")
+            }
+
+            
+
         }catch(e){
             console.error(e)
         }
@@ -77,7 +106,7 @@ export const AuthProvider = ({children}) =>{
      
 
 return (
-    <AuthContext.Provider value={{handleToSignUp,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
+    <AuthContext.Provider value={{handleToSignUp,handleGuestToLogin,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
         {children}
     </AuthContext.Provider>
 )}

@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 
  const LoginPage = () => {
  const location = useLocation();
- const {setuserLogin, handleToLogin,LoginPage} = useAuth();
+ const {setuserLogin, handleGuestToLogin,handleToLogin,LoginPage} = useAuth();
  const Navigate = useNavigate();
 
   
@@ -27,6 +27,9 @@ import { useAuth } from '../context/AuthContext';
       return location.state ? Navigate(location?.state?.from?.pathname): Navigate("/signIn")
       }}>Sign In</button>
 </p>
+<p><button className='loginbtn' style={{padding:"0.5rem 1rem 0.5rem 1rem " ,borderRadius:"1rem",fontSize:"18px"}}  onClick={()=>{handleGuestToLogin();
+      return location.state ? Navigate(location?.state?.from?.pathname): Navigate("/signIn")
+      }}>Guest Login</button></p>
 
 <p>
     <Link  to="/signUp" ><button className='newUserbtn' style={{width:"80%",padding:"0.5rem 1rem 0.5rem 1rem",fontSize:"16px"}} >New User...?</button></Link>
