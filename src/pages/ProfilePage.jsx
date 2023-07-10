@@ -12,7 +12,7 @@ import Suggestion from '../components/Suggestion';
 
 const ProfilePage = () => {   
    
-    const{selectedUser,userDatabsePost,NewUserProfile} = useUser();
+    const{selectedUser,userDatabsePost,handletoFollowUser} = useUser();
     const {postlist,editHandler,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost} = usePost()
     const{bookmarklist,handleToAddBookmark, handleToDeletBookmark }=useBookmark();
      
@@ -23,32 +23,45 @@ const ProfilePage = () => {
     
      return (
 <>
-    <div style={{display:"flex",justifyContent:"space-evenly"}} >
-    <div>
-      <div className='profilePageCard'  >
+<div style={{display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}} >
+    <div style={{display:"flex",flexDirection:"column",alignItems: "center",width:"23rem"}}  >
+    <div className='profilePageCard'  >
     
     <div style={{display:"flex",flexDirection:"column"}} >
         <div> 
          <div style={{display:"flex",margin:"1rem",flexDirection:"column"}} > 
-         <div style={{display:"flex",justifyContent:"space-evenly"}} >
+         <div style={{display:"flex",justifyContent:"space-around",width:"20rem"}} >
          <div>          
-         <p style={{fontSize:"20px",fontWeight:"bold"}} > {ProfileDetails?.firstName} {ProfileDetails?.lastName} </p>
-         <p>@{ProfileDetails?.username}</p>
+         <div><img src={ProfileDetails?.userPic}  className='profilePic'  alt="" /></div>
          </div>
-         <div><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} height={200} width={200}  alt="" /></div>
-         <p><button>Follow</button> </p>
+         <div style={{display:"flex",flexDirection:"column",alignItems:"flex-start",justifyContent:"space-evenly",textAlign:"left"}} >
+         <div>
+<button style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer",alignItems:"flex-end"}} onClick={()=>{handletoFollowUser()}} >Follow</button>
+
+</div>
+         <div>
+         <p className='firstNameProfile' style={{fontSize:"24px",fontWeight:"bold",color:"white"}}  > {ProfileDetails?.firstName} {ProfileDetails?.lastName} </p>
+         <p className='firstNameProfile'  >@{ProfileDetails?.username}</p>
+
+         </div><div>
+         <p className='firstNameProfile' >{ProfileDetails?.bio}</p>
+         <p className='firstNameProfile' >{ProfileDetails?.website}</p>
+         </div></div>
+       
+         
+         
          </div>
          <div style={{display:"flex",flexDirection:"column"}} >
          <div>
+
             <div style={{display:"flex"}}>
                 <div>
         </div>
         </div>
         <div style={{justifyContent:"center",textAlign:"center"}} >
-        <p>bio</p>
-        <p>user Link</p>
+        
        
-        <p> Posts: {userDatabsePost?.length}     Followers: {ProfileDetails?.followers?.length}    Following: {ProfileDetails?.following?.length}  </p>
+        <p style={{color:"black",fontSize:"20px"}} > <strong>Posts</strong>: {postlist?.length}    <strong>Followers</strong>: {ProfileDetails?.followers?.length}    <strong>Following</strong>: {ProfileDetails?.following?.length}  </p>
         </div>
         </div>
         </div>
@@ -61,12 +74,12 @@ const ProfilePage = () => {
         <div className='ProfilePosts'  >
         
           <div style={{display:"flex",padding:"1rem",margin:"0.5rem",justifyContent:"space-around",width:"30rem"}} >
-            <div>Posts</div>
+            
            
 
           </div>
 <div>
-        <ol style={{listStyle:"none"}}>{userDatabsePost?.map((item)=>{
+<ol style={{listStyle:"none"}}>{userDatabsePost?.map((item)=>{
             const{_id,content,likes,username,createdAt,likedBy}= item
             return(
             <>
@@ -81,7 +94,7 @@ const ProfilePage = () => {
                 <div>
                   
                   <p style={{fontSize:"1.3rem"}} > 
-                { username !== NewUserProfile?.username  ? "" : <div class="dropdown">
+                { username !== ProfileDetails?.username  ? "" : <div class="dropdown">
   <button class="dropbtn"><IoMdMore /></button>
   <div class="dropdown-content">
     <p onClick={()=>editHandler(item)}>Edit</p>
@@ -96,11 +109,13 @@ const ProfilePage = () => {
                 </div>
                 </div>
                 
-                 <Link to="/postDetails" style={{textDecoration:"none",padding:"0.5rem",color:"black"}} ><div onClick={()=>singlePostHandler(item)} >{content}</div></Link>
+                 <Link to="/postDetails" style={{textDecoration:"none",padding:"0.5rem",color:"black"}} ><div onClick={()=>singlePostHandler(item)} style={{textAlign:'left',marginBottom:"0.5rem"}} ><p>{content}</p>
+                 <div style={{textAlign:"center"}} ><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} height={300} width={300} alt="" /></div>
+                 </div></Link>
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 
                     <p>
-                    {likes.likedBy?.find((lst)=>lst.username === NewUserProfile.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes.likeCount >0 && likes.likeCount}
+                    {likes.likedBy?.find((lst)=>lst.username === ProfileDetails?.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes.likeCount >0 && likes.likeCount}
                     </p>
                     <p>
                  <FcComments /> 
@@ -109,9 +124,8 @@ const ProfilePage = () => {
                 <p>
                    <FcShare/>
                    </p> 
-                   <p onClick={()=>handleTODeletePost(item)} >Delete</p>
-                    
-
+                   
+                 
                 </div>
                 </li> </>)})}</ol>
                 </div>
@@ -121,7 +135,7 @@ const ProfilePage = () => {
         <div className='followersList'>
           folowers
           <div>
-            <ol>{ProfileDetails?.followers?.map((item)=>{
+            <ol>{ProfileDetails.followers?.map((item)=>{
       const {_id,firstName,lastName,username} = item
       return(
     <li key={_id}  >
@@ -143,7 +157,7 @@ const ProfilePage = () => {
         <div className='followersList'>
           following
           <div>
-            <ol>{ProfileDetails?.following?.map((item)=>{
+            <ol>{ProfileDetails.following?.map((item)=>{
       const {_id,firstName,lastName,username} = item
       return(
     <li key={_id}  >
@@ -163,7 +177,7 @@ const ProfilePage = () => {
         </div> 
         </div> 
            
-     
+      
 </div>
     </>
     )

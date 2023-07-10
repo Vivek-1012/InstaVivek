@@ -11,7 +11,9 @@ export const posts = [
     _id: uuid(),
     content:
       "Hello i am Adarsh",
-    likes: {
+      userPic:`https://photosfile.com/wp-content/uploads/2022/07/Cartoon-DP-Girl-1.jpeg`,
+
+      likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
@@ -19,23 +21,34 @@ export const posts = [
     username: "adarshbalika",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    bio:"life full of wonders",
+    website:"happines.com",
+    
   },
   {
     _id: uuid(),
     content:
       "Hello i am vivek",
-    likes: {
+      userPic:`https://i.pinimg.com/736x/d1/58/7f/d1587f704853ad5358aaf214779dee9d.jpg`,
+
+      likes: {
       likeCount: 2,
       likedBy: [],
       dislikedBy: [],
     },
     username: "VivekKumar",
     createdAt: formatDate(),
+    bio:"happy life",
+    website:"happines.com",
     updatedAt: formatDate(),
-  },{
+  },
+  
+  {
     _id: uuid(),
     content:
       "Hie i am vivek",
+    userPic:`https://i.pinimg.com/736x/d1/58/7f/d1587f704853ad5358aaf214779dee9d.jpg`,
+
     likes: {
       likeCount: 3,
       likedBy: [],
@@ -43,10 +56,14 @@ export const posts = [
     },
     username: "VivekKumar",
     createdAt: formatDate(),
+    bio:"happy Life",
+    website:"happines.com",
     updatedAt: formatDate(),
   },
   {
     _id: uuid(),
+    userPic:`https://i.pinimg.com/474x/94/f1/c2/94f1c21e7e57eb2beb87aa70fe35c231.jpg`,
+    
     content:
       "Hello i am Harshit",
     likes: {
@@ -56,19 +73,25 @@ export const posts = [
     },
     username: "harshityadav",
     createdAt: formatDate(),
+    bio:"Honesty Is the best policy",
+    website:"happines.com",
     updatedAt: formatDate(),
   },
   {
     _id: uuid(),
     content:
       "Hello i am Parul",
-    likes: {
+      userPic:`https://photosfile.com/wp-content/uploads/2022/07/Cartoon-DP-Girl-5.jpeg`,
+
+      likes: {
       likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },
     username: "parularya",
     createdAt: formatDate(),
+    bio:"Queen Of my World",
+    website:"happines.com",
     updatedAt: formatDate(),
   },
 ];

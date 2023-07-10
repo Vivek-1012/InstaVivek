@@ -24,15 +24,18 @@ function App() {
   return (
     <div className="App">
       <div><Popup/></div> 
+      
+      
       <nav className="navBar">
-        <div style={{color:"white"}} >InstaVivek</div>
+        <div style={{color:"white",fontSize:"20px"}} > <span style={{fontWeight:"bold",color:"#00ADB5"}} >Insta</span>Vivek</div>
       
       </nav>
-      <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap"}} >
+     
+ <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap"}} >
       <div><Navbar /></div>
 
 <div style={{width:"30rem"}} >
-  <div style={{textAlign:"center",display:"flex",flexDirection:"column"}} >
+  <div style={{textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center"}} >
     <Routes>
       <Route path="/" element={<RequireAuth> <Home /> </RequireAuth>} />
         <Route path="/feedPage" element={<RequireAuth> <FeedsPage /> </RequireAuth>} />

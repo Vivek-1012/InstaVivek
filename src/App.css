@@ -9,7 +9,97 @@
  /* feed page css */
 
  
-      
+
+.LoginPage { 
+  position: fixed;
+     top:10rem;
+   left: 37%; 
+ 
+margin-left: -200px;
+
+  border: 3px solid #00ADB5;
+  padding: 1rem;
+  width: 25rem;
+  color:white;
+  border-radius: 1rem;
+  margin: 1rem;
+  background-color: #393E46;
+
+
+}
+.SignPage{
+  position: fixed;
+  top:8rem;
+left: 37%; 
+
+margin-left: -200px;
+  border: 3px solid indianred;
+  padding: 1rem;
+  width: 25rem;
+  color:white;
+  border-radius: 1rem;
+  margin: 1rem;
+  background-color: #463a39;
+
+}
+
+.newUserbtn:hover{
+  background-color: indianred;
+  font-weight: bold;
+  cursor: pointer;
+} 
+
+.SignPage p{
+  font-size: 18px;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+.SignPage input{
+  padding: 0.5rem;
+  border-radius: 1rem;
+  width: 20rem;
+}
+  .RegistratinBtn{
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 16px;
+  border-radius: 1rem;
+}
+
+.NonRegistratinBtn{
+width: 80%;
+font-size: 14px;
+padding: 0.5rem;
+}
+.NonRegistratinBtn:hover{
+  background-color:tomato;
+  font-weight: bold;
+}
+
+.RegistratinBtn:hover{
+   background-color: #00ADB5;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.loginbtn:hover{
+  background-color: #00ADB5;
+  cursor: pointer;
+  font-weight: bold;
+  /* font-size: larger; */
+}
+
+.LoginPage p{
+  font-size: 18px;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.LoginPage input{
+  padding: 0.5rem;
+  border-radius: 1rem;
+ 
+}
 
 .feedIcon p
 
@@ -102,6 +192,7 @@ color: white;
   .dropdown-content {
     display: none;
     position: absolute;
+   
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -129,10 +220,17 @@ color: white;
     font-size: 16px;
     display: block;
   }
-  
+  .profilePic{
+    height:200px; 
+    width:200px; 
+    border:2px solid black;
+    border-radius:50%;
+    margin-right: 10px;
+   
+  }
   .dropdown-content p:hover {background-color: #ddd;}
   
-  .dropdown:hover .dropdown-content {display: block;}
+  .dropdown:hover  .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color:#393E46;}
 
@@ -144,7 +242,13 @@ color: white;
   }
 
  
-
+  .LoginparentpopupLayout{
+    background-color: black;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    /* opacity: 0.8; */
+  }
 
 
   /* popup css */
@@ -203,10 +307,11 @@ margin-left: -200px;
     border-radius: 1rem;
     
   }
+
   .sideNavbaricon:hover{
    background-color: white;
-   
   }
+   
   .sideNavbaricon:active{
     background-color: white;
   }
@@ -219,6 +324,22 @@ margin-left: -200px;
   -webkit-text-stroke-color: black;
   }
 
+  .SuggestionLayout{
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+  }
+
+  .profileLayout{
+    display:"flex";
+    flex-direction:column;
+    align-items:center;
+    width:30rem; 
+
+  }
+  .ContentpagesLayout{
+    width: 30rem;
+  }
   @media only screen and (max-width: 600px) { 
     .sideNavbar{
       display: flex;
@@ -232,7 +353,58 @@ margin-left: -200px;
      position: fixed;
       align-content: center;
       padding: 1rem;
-   
+     justify-content: space-evenly;
     }
+    .dropdown-content {
+     
+      right: 0;
+     
+    }
+
+   .SuggestionLayout{
+    display: flex;
+    list-style: none;
+    margin-bottom: 7rem;
+   flex-direction: row;
+  }
+  .postCard{
+    width: 20rem;
+  }
+  .profileLayout{
+    width: 20rem;
+  }
+
+  .profilePic{
+    height:150px; 
+    width:150px;
+  }
+  .profilePageCard{
+  width: 21rem;
+  }
+  .myComponent{
+    width: 22rem;
+    height: 14rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-bottom: 2rem;
+   
+  }
+  .ContentpagesLayout{
+    width: 100%;
+  }
+  .LoginPage {
+   
+ left: 0%;
+    width: 93%;
+ 
+ 
+}
+.SignPage{
+  width: 93%;
+ left: 0%;
+  top:5rem;
+
+}
+
 
   }

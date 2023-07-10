@@ -15,8 +15,14 @@ const FeedsPage = () => {
  const {dischargeHandler,EditDiv,editHandler,postId,newContent,setAddNewcontentValue,handlertoupdateEdit,postlist,handleToEdit,singlePost,setAddNewPostValue,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost} = usePost()
 const{bookmarklist,handleToAddBookmark,handleToDeletBookmark}=useBookmark(); 
 const {NewUserProfile} =useAuth()
+const [trendingList,setTrendingList] =useState(postlist)
 
-
+const handlerForLatest = (trendingList) =>{
+  const sortedList = [...trendingList].sort((a,b)=>b.likes.likeCount-a.likes.likeCount);
+  setTrendingList(sortedList)
+  console.log(sortedList,"sorted List")
+}
+ 
 
 
 
@@ -33,30 +39,22 @@ return (
 
         
         
-  <div>{ EditDiv &&   <div className='popupLayout' > 
-
-  
-  <input type="text"  placeholder='Whats in Your mind'  onChange={(event)=>setAddNewcontentValue(event.target.value)} />
-  
-  <button onClick={()=>handlertoupdateEdit(postId,newContent)} >update Post</button>
-  <button onClick={()=>dischargeHandler()} >Discharge</button>
-  </div> }</div>        
         <div className='Feedlayout' > 
         <div className='feedpost' >
         <div  >
       <button className='feedButton'>Trending</button>
-      <button className='feedButton'>Latest</button>
+      <button className='feedButton' onClick={()=>handlerForLatest(trendingList)} >Latest</button>
      
     </div>
-    <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{postlist?.map((item)=>{
-            const{_id,content,likes,username,createdAt,likedBy}= item
+    <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{trendingList?.map((item)=>{
+            const{_id,content,likes,username,userPic,createdAt,likedBy}= item
             return(
             <>
             <li className='postCard' key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
                 <div style={{display:"flex"}} >
-                <div><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    

@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth } from "./AuthContext";
 
 
 export const PostContext = createContext();
@@ -7,6 +8,8 @@ export const PostContext = createContext();
 export const PostProvider = ({children}) =>{
  const token = localStorage.getItem("token");
 const [EditDiv,setEditDiv]=useState(false)
+const {NewUserProfile} =useAuth()
+
 
  const [addNewPostValue,setAddNewPostValue]=useState()
  const [postlist,setpostlist] = useState([])
@@ -49,7 +52,7 @@ const [EditDiv,setEditDiv]=useState(false)
             const response = await fetch(`/api/posts`,{
               method:"POST",
               headers:({authorization: token }),
-              body: JSON.stringify({ postData: {content: post} })
+              body: JSON.stringify({ postData: {content: post, userPic: NewUserProfile.userPic } })
             })
             const data =(await response.json())
             
@@ -78,6 +81,9 @@ const [EditDiv,setEditDiv]=useState(false)
         }
     }
 
+    
+
+    
     const handleToLike = async(item)=>{
         try{
             const response = await fetch(`/api/posts/like/${item._id}`,{
@@ -143,7 +149,7 @@ const handlertoupdateEdit=(postId,newContent)=>{
             setEditDiv(!EditDiv)
           }
          
-        
+         
           const dischargeHandler=()=>setEditDiv(!EditDiv)
 return<PostContext.Provider value={{newContent,postId,dischargeHandler,EditDiv,editHandler,setEditDiv,setAddNewcontentValue,handlertoupdateEdit,addNewPostValue,handleToEdit,setAddNewPostValue,postlist,handleToAddPost,handleTODeletePost,singlePostHandler,singlePost,handleToLike,setpostlist,likedPostList,handleToDislike,token}}>
     {children}

@@ -8,6 +8,9 @@ export const AuthContext = createContext()
 export const AuthProvider = ({children}) =>{
  const [NewUserProfile,setNewUserProfile] = useState([])
  const Navigate = useNavigate();
+ const [LoginPage,setLoginPage]=useState(false)
+ const [SigninPage,setSigninPage]=useState(false)
+
  const [userRegistration,setUserRegistration]=useState({
     firstName:"",
     lastName:"",
@@ -34,6 +37,7 @@ export const AuthProvider = ({children}) =>{
 
                 setuserLogin((prev)=>({...prev,user:{...foundUser}}))
                 setNewUserProfile(foundUser)
+                console.log(foundUser)
                 
                 console.log(userLogin,"Login ")   
                 localStorage.setItem("token",encodedToken)
@@ -73,7 +77,7 @@ export const AuthProvider = ({children}) =>{
      
 
 return (
-    <AuthContext.Provider value={{handleToSignUp,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
+    <AuthContext.Provider value={{handleToSignUp,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
         {children}
     </AuthContext.Provider>
 )}

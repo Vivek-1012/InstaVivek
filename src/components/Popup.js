@@ -18,7 +18,16 @@ return (<>
 
 <button onClick={()=>handlertoupdateEdit(postId,newContent)} >update Post</button>
 <button onClick={()=>dischargeHandler()} >Discharge</button>
-</div> </div> }</div>        
+</div> </div> }</div>
+ 
+<div>{ EditDiv &&   <div className='popupLayout' > 
+
+  
+<input type="text"  placeholder='Whats in Your mind'  onChange={(event)=>setAddNewcontentValue(event.target.value)} />
+
+<button onClick={()=>handlertoupdateEdit(postId,newContent)} >update Post</button>
+<button onClick={()=>dischargeHandler()} >Discharge</button>
+</div> }</div>         
   
   </>
       )

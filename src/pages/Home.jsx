@@ -10,25 +10,28 @@ import { Link } from 'react-router-dom';
 import Suggestion from '../components/Suggestion';
 import Popup from '../components/Popup';
 import Navbar from '../components/Navbar';
+import { useUser } from '../context/UserContext';
 
 
 const Home = () => {
 
   const {NewUserProfile} = useAuth()
-  
+  const {userlist} = useUser()
   const {EditDiv,singlePost,newContent,dischargeHandler,handlertoupdateEdit,postId,setAddNewcontentValue,handleToAddPost,postlist,newPostAddedList,addNewPostValue,setAddNewPostValue,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost,editHandler} = usePost()
   const{bookmarklist,handleToAddBookmark,handleToDeletBookmark }=useBookmark(); 
 
-
-  const filterList = postlist?.filter((lst=>lst.username === NewUserProfile?.username  ))
-
+   
+ const filterList = postlist?.filter((lst=>lst.username === NewUserProfile?.username  ))
+ const UserDp = userlist.user?.find((lst)=> lst.username === filterList?.username)
+ console.log(filterList,"userFilter")
+ console.log(UserDp,"userDp")
   const post = addNewPostValue
- console.log(newPostAddedList,"Home")
+ 
 
 return (
 <>
    
-<div><Popup/></div>        
+      
  
 
 
@@ -49,14 +52,16 @@ return (
   
   
    <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{filterList?.map((item)=>{
-            const{_id,content,likes,username,createdAt,likedBy}= item
+            const{_id,userPic,content,likes,username,createdAt,likedBy}= item
             return(
             <>
             <li className='postCard' key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
+               
+               
                 <div style={{display:"flex"}} >
-                <div><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    

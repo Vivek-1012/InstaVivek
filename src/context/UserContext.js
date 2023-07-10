@@ -10,12 +10,17 @@ export const userContext = createContext();
 export const UserProvider = ({children}) =>{
     const token = localStorage.getItem("token");
     const {setpostlist} = usePost();
+    const {NewUserProfile,} = useAuth()
     const [userlist,setUserlist] = useState([])
     const [selectedUser,setSelectedUSer] = useState([])
     const{setNewUserProfile} =useAuth()   
    const [userDatabsePost,setUserDatabsePost]=useState([]) 
+   const [newDetails,setnewDetails]=useState({
+    bio:"",website:""})
+  const postId = NewUserProfile._id
 
-    const userList = async()=>{
+
+   const userList = async()=>{
         try{
     
             const response = await fetch("/api/users",{
@@ -23,7 +28,8 @@ export const UserProvider = ({children}) =>{
             })
     
             const userdata = (await response.json())
-            setUserlist(userdata)   
+            
+            setUserlist(userdata.users)   
         }catch(e){
             console.error(e)
         }
@@ -94,12 +100,34 @@ export const UserProvider = ({children}) =>{
             console.error(e)
         }
     }
-       
+     
+    const handlertoupdateProfileDetails = async(postId,newDetails)=>{
+        console.log(postId,newDetails,"userDetails")
+        try{
+            const response = await fetch(`/api/users/edit`,{
+                method:"POST",
+                headers:({authorization: token }),
+                body: JSON.stringify({userData:{bio: newDetails.bio,website: newDetails.website }})
+            })
+            
+           
+          
+            const data = await response.json()
+            setNewUserProfile(data.user)
+            console.log(data,"New user Data")
+            // setpostlist(data.posts)
+
+        }catch(e){
+            console.error(e)
+        }
+    }
+
+
     
     useEffect(()=>{userList()},[])
     
-
-return <userContext.Provider value={{handleGetUserPost,userDatabsePost,userlist,handleGetUser,selectedUser,handletoFollowUser}} >
+  
+return <userContext.Provider value={{handlertoupdateProfileDetails,handleGetUserPost,userDatabsePost,newDetails,userlist,handleGetUser,selectedUser,handletoFollowUser,setnewDetails}} >
         {children}
     </userContext.Provider>
 }

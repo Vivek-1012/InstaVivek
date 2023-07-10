@@ -17,21 +17,30 @@ const BookmarkPage = () => {
   
 
 const {handleToAddBookmark,bookmarklist,handleToDeletBookmark}=useBookmark()
-console.log(bookmarklist,"Bookmark page")
-    return (<>
+// console.log(bookmarklist,"Bookmark page")
+
+const filterList = bookmarklist.map((lst)=>lst._id)
+console.log(filterList,"filterList")
+const idlist = postlist.map(lst=>lst._id)
+const list = idlist.filter((lst)=>lst !== filterList )
+
+          
+console.log(list,"Bppkmark page")
+
+return (<>
     <div>BookmarkPage</div>
-    <Popup/>
+
     <div className='LikedPagelayout' >
   <div style={{display: "flex",alignContent:"center",justifyContent:"center"}} >
-  <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{bookmarklist?.map((item)=>{
-            const{_id,content,likes,username,createdAt,likedBy}= item
+  <ol style={{display:"flex",listStyle:"none",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{bookmarklist?.map((item)=>{
+            const{_id,content,likes,username,userPic,createdAt,likedBy}= item
             return(
             <>
-            <li className='postCard' key={_id}>
+            <li className='postCard' style={{listStyle:'none'}} key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
                 <div style={{display:"flex"}} >
-                <div><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    
@@ -61,9 +70,9 @@ console.log(bookmarklist,"Bookmark page")
                  </div></Link>
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 
-                    <p>
+                {/* <p>
                     {likes.likedBy?.find((lst)=>lst.username === NewUserProfile?.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes.likeCount >0 && likes.likeCount}
-                    </p>
+                    </p> */}
                     <p>
                  <FcComments /> 
                 </p>
