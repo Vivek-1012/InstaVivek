@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
+import { useUser } from "./UserContext";
 
 
 export const PostContext = createContext();
@@ -18,7 +19,7 @@ const {NewUserProfile} =useAuth()
  const post = singlePost.content
  const postId =singlePost._id 
  const [newContent,setAddNewcontentValue]=useState(post)
- 
+// const {newDetails} = useUser() 
  
  const postList = async()=>{
         try{

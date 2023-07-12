@@ -16,7 +16,7 @@ export const UserProvider = ({children}) =>{
     const{setNewUserProfile} =useAuth()   
    const [userDatabsePost,setUserDatabsePost]=useState([]) 
    const [newDetails,setnewDetails]=useState({
-    bio:"",website:""})
+    bio:"",website:"",userPic:``})
   const postId = NewUserProfile._id
 
 
@@ -107,20 +107,34 @@ export const UserProvider = ({children}) =>{
             const response = await fetch(`/api/users/edit`,{
                 method:"POST",
                 headers:({authorization: token }),
-                body: JSON.stringify({userData:{bio: newDetails.bio,website: newDetails.website }})
+                body: JSON.stringify({userData:{bio: newDetails.bio,website: newDetails.website, userPic:newDetails.userPic }})
             })
-            
-           
-          
+                        
             const data = await response.json()
             setNewUserProfile(data.user)
+            // setUserlist(data)
             console.log(data,"New user Data")
             // setpostlist(data.posts)
+
+            // const responsePost = await fetch(`/api/posts/edit/${postId}`,{
+            //     method:"POST",
+            //     headers:({authorization: token }),
+            //     body: JSON.stringify({ postData:{userPic: newDetails.userPic} })
+            // })
+           
+          
+            // const dataPost = await responsePost.json()
+            // console.log(dataPost,"userEdited Post")
+            // setpostlist(dataPost.posts)
+
 
         }catch(e){
             console.error(e)
         }
     }
+
+
+    
 
 
     

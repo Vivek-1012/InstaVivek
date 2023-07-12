@@ -61,7 +61,7 @@ return (
                
                
                 <div style={{display:"flex"}} >
-                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div><img src={NewUserProfile.userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    

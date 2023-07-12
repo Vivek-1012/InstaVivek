@@ -7,6 +7,8 @@ import { SlHeart } from "react-icons/sl";
 import { GoBookmark } from "react-icons/go";
 import { IoMdMore } from "react-icons/io";
 import { useBookmark } from '../context/BookmarkContext';
+import { SlGlobe } from "react-icons/sl";
+
 // import { useUser } from '../context/UserContext';
 import Suggestion from '../components/Suggestion';
 
@@ -24,7 +26,7 @@ const ProfilePage = () => {
      return (
 <>
 <div style={{display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}} >
-    <div style={{display:"flex",flexDirection:"column",alignItems: "center",width:"23rem"}}  >
+    <div  className='profileLayout'   >
     <div className='profilePageCard'  >
     
     <div style={{display:"flex",flexDirection:"column"}} >
@@ -43,10 +45,12 @@ const ProfilePage = () => {
          <p className='firstNameProfile' style={{fontSize:"24px",fontWeight:"bold",color:"white"}}  > {ProfileDetails?.firstName} {ProfileDetails?.lastName} </p>
          <p className='firstNameProfile'  >@{ProfileDetails?.username}</p>
 
-         </div><div>
+         </div>
+         <div>
          <p className='firstNameProfile' >{ProfileDetails?.bio}</p>
-         <p className='firstNameProfile' >{ProfileDetails?.website}</p>
-         </div></div>
+         <p className='firstNameProfile' style={{display:"flex",alignItems:"center"}} ><SlGlobe/> {ProfileDetails?.website}</p>
+         </div>
+         </div>
        
          
          
@@ -61,7 +65,7 @@ const ProfilePage = () => {
         <div style={{justifyContent:"center",textAlign:"center"}} >
         
        
-        <p style={{color:"black",fontSize:"20px"}} > <strong>Posts</strong>: {postlist?.length}    <strong>Followers</strong>: {ProfileDetails?.followers?.length}    <strong>Following</strong>: {ProfileDetails?.following?.length}  </p>
+        <p style={{color:"black",fontSize:"20px"}} > <strong>Posts</strong>: {userDatabsePost?.length}    <strong>Followers</strong>: {ProfileDetails?.followers?.length}    <strong>Following</strong>: {ProfileDetails?.following?.length}  </p>
         </div>
         </div>
         </div>
@@ -73,7 +77,7 @@ const ProfilePage = () => {
 <div>
         <div className='ProfilePosts'  >
         
-          <div style={{display:"flex",padding:"1rem",margin:"0.5rem",justifyContent:"space-around",width:"30rem"}} >
+          <div style={{display:"flex",padding:"1rem",margin:"0.5rem",justifyContent:"space-around",width:"20rem"}} >
             
            
 

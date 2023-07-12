@@ -19,10 +19,8 @@ const UserProfile = () => {
     // console.log(NewUserProfile)
     const filterList = postlist?.filter((lst=>lst.username === NewUserProfile?.username  ))
    
-    //  const [bio,setbio] = useState({bio,userlink})
-  
-const handlertoupdateProfile = () =>
-   console.log("clickd")
+     
+
 
    const postId = NewUserProfile._id
 
@@ -31,7 +29,7 @@ const handlertoupdateProfile = () =>
     
     <>
    <div>{ EditProfileDiv &&   <div> <div className='popupLayout' > 
-    <input type="text"  placeholder='Add avatar'  onChange={(event)=>setnewDetails((prv)=>({...prv,bio:event.target.value}))} />
+    <input type="text"  placeholder='Add avatar'  onChange={(event)=>setnewDetails((prv)=>({...prv,userPic:event.target.value}))} />
 
 <input type="text"   placeholder='Write bio....'  onChange={(event)=>setnewDetails((prv)=>({...prv, bio: event.target.value}))} />
   
@@ -40,16 +38,7 @@ const handlertoupdateProfile = () =>
 <button onClick={()=>handlertoupdateProfileDetails(postId,newDetails)} >update Post</button>
 <button onClick={()=>setEditProfileDiv(!EditProfileDiv)} >Discharge</button>
 </div> </div> }</div>     
-{/* <div>{ EditProfileDiv &&   <div > <div className='popupLayout' > 
-    <input type="text"  placeholder='Add avatar'  onChange={(event)=>setAddNewcontentValue(event.target.value)} />
 
-<input type="text"  placeholder='Write bio....'  onChange={(event)=>setAddNewcontentValue(event.target.value)} />
-  
-<input type="text"  placeholder='Enter website...'  onChange={(event)=>setAddNewcontentValue(event.target.value)} />
-
-<button onClick={()=>handlertoupdateProfileDetails(postId)} >update Post</button>
-<button onClick={()=>setEditProfileDiv(!EditProfileDiv)} >Discharge</button>
-</div> </div> }</div>      */}
     <div style={{display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}} >
     <div className='profileLayout'  >
       <div className='profilePageCard'  >
@@ -67,7 +56,7 @@ const handlertoupdateProfile = () =>
          <p className='firstNameProfile'  >@{NewUserProfile?.username}</p>
          </div><div>
          <p className='firstNameProfile' >{NewUserProfile?.bio}</p>
-         <p className='firstNameProfile' ><SlGlobe/> {NewUserProfile?.website}</p>
+         <p className='firstNameProfile' style={{display:"flex",alignItems:"center"}} ><SlGlobe/> {NewUserProfile?.website}</p>
          </div></div>
          <div class="dropdown">
   <button class="dropbtn" style={{backgroundColor:"#42c6d1",fontSize:"24px",cursor:"pointer"}} ><FcSettings /></button>
@@ -107,7 +96,7 @@ const handlertoupdateProfile = () =>
           </div>
 <div>
 <ol style={{listStyle:"none"}}>{filterList?.map((item)=>{
-            const{_id,content,likes,username,createdAt,likedBy}= item
+            const{_id,content,likes,username,createdAt,userPic,likedBy}= item
             return(
             <>
             <li className='postCard' key={_id}>
@@ -116,7 +105,7 @@ const handlertoupdateProfile = () =>
                 <div style={{display:"flex"}} >
 
 
-                <div><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div><img src={NewUserProfile.userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    

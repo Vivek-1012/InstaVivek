@@ -285,6 +285,8 @@ margin-left: -200px;
     padding: 1rem;
     background-color:black;
     margin-bottom: 1rem; 
+    display: flex;
+    justify-content: space-between;
   }
 
   .sideNavbar{
@@ -372,7 +374,7 @@ margin-left: -200px;
   }
   .profileLayout{
     width: 20rem;
-  }
+  } 
 
   .profilePic{
     height:150px; 
@@ -382,7 +384,7 @@ margin-left: -200px;
   width: 21rem;
   }
   .myComponent{
-    width: 22rem;
+    width: 24rem;
     height: 14rem;
     overflow-x: scroll;
     overflow-y: hidden;

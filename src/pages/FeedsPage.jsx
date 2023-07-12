@@ -8,12 +8,15 @@ import { GoBookmark } from "react-icons/go";
 import { useAuth } from '../context/AuthContext';
 import { IoMdMore } from "react-icons/io";
 import Suggestion from '../components/Suggestion';
+import { useEffect } from 'react';
 
 
 const FeedsPage = () => {
  const Navigate = useNavigate()
  const {dischargeHandler,EditDiv,editHandler,postId,newContent,setAddNewcontentValue,handlertoupdateEdit,postlist,handleToEdit,singlePost,setAddNewPostValue,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost} = usePost()
 const{bookmarklist,handleToAddBookmark,handleToDeletBookmark}=useBookmark(); 
+
+
 const {NewUserProfile} =useAuth()
 const [trendingList,setTrendingList] =useState(postlist)
 
@@ -24,15 +27,6 @@ const handlerForLatest = (trendingList) =>{
 }
  
 
-
-
-const post = singlePost.content
-
-
-
-
-console.log(singlePost.content)
-
 return (
   <>
   
@@ -42,19 +36,22 @@ return (
         <div className='Feedlayout' > 
         <div className='feedpost' >
         <div  >
-      <button className='feedButton'>Trending</button>
-      <button className='feedButton' onClick={()=>handlerForLatest(trendingList)} >Latest</button>
+      <button className='feedButton'>Latest</button>
+      <button className='feedButton' onClick={()=>handlerForLatest(trendingList)} >Trending</button>
      
     </div>
-    <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{trendingList?.map((item)=>{
-            const{_id,content,likes,username,userPic,createdAt,likedBy}= item
+    <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{postlist?.map((item)=>{
+            const{_id,content,likes,username,userPic,createdAt,}= item
             return(
             <>
+            
             <li className='postCard' key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
                 <div style={{display:"flex"}} >
-                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div>
+                {username === NewUserProfile.username ?  <img src={NewUserProfile.userPic} height={50} width={50} /> :<img src={userPic} height={50} width={50} />
+             } </div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    

@@ -18,6 +18,7 @@ import { SlHeart } from "react-icons/sl";
 import { Link } from 'react-router-dom';
 import Suggestion from "./components/Suggestion";
 import Popup from "./components/Popup";
+import Input from "./components/Input";
 
 
 function App() {
@@ -27,8 +28,9 @@ function App() {
       
       
       <nav className="navBar">
+        
         <div style={{color:"white",fontSize:"20px"}} > <span style={{fontWeight:"bold",color:"#00ADB5"}} >Insta</span>Vivek</div>
-      
+        <div><Input /></div>
       </nav>
      
  <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap"}} >

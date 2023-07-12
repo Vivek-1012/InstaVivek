@@ -38,7 +38,8 @@ return (
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
                 <div style={{display:"flex"}} >
-                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div>  {username === NewUserProfile.username ?  <img src={NewUserProfile.userPic} height={50} width={50} /> :<img src={userPic} height={50} width={50} />
+             }</div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    

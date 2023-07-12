@@ -37,7 +37,7 @@ export const BookmarkProvider = ({children})=>{
             })
 
             const data = await response.json()
-                 
+                 console.log(data,"Added bookmark")
           setBookmarklist(data.bookmarks)
         
         }catch(e){

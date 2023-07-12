@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useBookmark } from '../context/BookmarkContext'
 import { Link } from 'react-router-dom'
 import { usePost } from '../context/PostsContext'
@@ -14,25 +14,20 @@ const BookmarkPage = () => {
   
     const {EditDiv,singlePost,newContent,dischargeHandler,handlertoupdateEdit,postId,setAddNewcontentValue,handleToAddPost,postlist,newPostAddedList,addNewPostValue,setAddNewPostValue,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost,editHandler} = usePost()
   
-  
+  const [bookMarkId,setbookMarkId]=useState([])
 
 const {handleToAddBookmark,bookmarklist,handleToDeletBookmark}=useBookmark()
-// console.log(bookmarklist,"Bookmark page")
 
-const filterList = bookmarklist.map((lst)=>lst._id)
-console.log(filterList,"filterList")
-const idlist = postlist.map(lst=>lst._id)
-const list = idlist.filter((lst)=>lst !== filterList )
+// console.log(postlist,"bookmark post list")
 
-          
-console.log(list,"Bppkmark page")
-
+const bookmarkPostList = postlist?.filter(post=>bookmarklist?.some(user => user._id === post._id))
+console.log(bookmarkPostList,"new list")
 return (<>
     <div>BookmarkPage</div>
 
     <div className='LikedPagelayout' >
   <div style={{display: "flex",alignContent:"center",justifyContent:"center"}} >
-  <ol style={{display:"flex",listStyle:"none",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{bookmarklist?.map((item)=>{
+  <ol style={{display:"flex",listStyle:"none",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{bookmarkPostList?.map((item)=>{
             const{_id,content,likes,username,userPic,createdAt,likedBy}= item
             return(
             <>
@@ -70,9 +65,9 @@ return (<>
                  </div></Link>
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 
-                {/* <p>
-                    {likes.likedBy?.find((lst)=>lst.username === NewUserProfile?.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes.likeCount >0 && likes.likeCount}
-                    </p> */}
+                <p>
+                    {likes?.likedBy?.find((lst)=>lst.username === NewUserProfile?.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes?.likeCount >0 && likes?.likeCount}
+                    </p>
                     <p>
                  <FcComments /> 
                 </p>
