@@ -12,7 +12,7 @@ export const posts = [
     content:
       "Hello i am Adarsh",
       userPic:`https://photosfile.com/wp-content/uploads/2022/07/Cartoon-DP-Girl-1.jpeg`,
-
+       postPic:`https://images.unsplash.com/photo-1613323593608-abc90fec84ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80`,
       likes: {
       likeCount: 0,
       likedBy: [],
@@ -48,7 +48,7 @@ export const posts = [
     content:
       "Hie i am vivek",
     userPic:`https://i.pinimg.com/736x/d1/58/7f/d1587f704853ad5358aaf214779dee9d.jpg`,
-
+ postPic:`https://i.pinimg.com/474x/69/44/39/694439b3031503a7564eda9e24f673eb.jpg`,
     likes: {
       likeCount: 3,
       likedBy: [],
@@ -82,7 +82,7 @@ export const posts = [
     content:
       "Hello i am Parul",
       userPic:`https://photosfile.com/wp-content/uploads/2022/07/Cartoon-DP-Girl-5.jpeg`,
-
+      postPic:`https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg`,
       likes: {
       likeCount: 0,
       likedBy: [],

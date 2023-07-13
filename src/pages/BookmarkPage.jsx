@@ -23,19 +23,20 @@ const {handleToAddBookmark,bookmarklist,handleToDeletBookmark}=useBookmark()
 const bookmarkPostList = postlist?.filter(post=>bookmarklist?.some(user => user._id === post._id))
 console.log(bookmarkPostList,"new list")
 return (<>
-    <div>BookmarkPage</div>
+    <h2 style={{color:"white"}} >Saved Content</h2>
 
     <div className='LikedPagelayout' >
   <div style={{display: "flex",alignContent:"center",justifyContent:"center"}} >
   <ol style={{display:"flex",listStyle:"none",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{bookmarkPostList?.map((item)=>{
-            const{_id,content,likes,username,userPic,createdAt,likedBy}= item
+            const{_id,content,likes,postPic,username,userPic,createdAt,likedBy}= item
             return(
             <>
             <li className='postCard' style={{listStyle:'none'}} key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
                 <div style={{display:"flex"}} >
-                <div><img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
+                <div>  {username === NewUserProfile.username ?  <img src={NewUserProfile.userPic} style={{borderRadius:"2rem"}} height={50} width={50} /> :<img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} />
+             }</div>
                 <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
                 
                 </div>    
@@ -61,7 +62,9 @@ return (<>
             
                 
                  <Link to="/postDetails" style={{textDecoration:"none",padding:"0.5rem",color:"black"}} ><div onClick={()=>singlePostHandler(item)} ><p style={{textAlign:'left',marginBottom:"0.5rem"}} >{content}</p>
-                 <div style={{textAlign:"center"}} ><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} height={300} width={300} alt="" /></div>
+                 <div style={{textAlign:"center"}} >
+                  {postPic === null ? <p>{""}</p> :
+                  <img src={postPic} style={{height:"50%",width:"50%"}}  />}</div>
                  </div></Link>
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 

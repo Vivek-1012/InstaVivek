@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePost } from "./PostsContext";
 import { useAuth } from "./AuthContext";
+import Loading from "../components/Loading";
 
 
 export const userContext = createContext();
@@ -11,6 +12,7 @@ export const UserProvider = ({children}) =>{
     const token = localStorage.getItem("token");
     const {setpostlist} = usePost();
     const {NewUserProfile,} = useAuth()
+const {isLoading,setisLoading} = useAuth()
     const [userlist,setUserlist] = useState([])
     const [selectedUser,setSelectedUSer] = useState([])
     const{setNewUserProfile} =useAuth()   
@@ -30,6 +32,8 @@ export const UserProvider = ({children}) =>{
             const userdata = (await response.json())
             
             setUserlist(userdata.users)   
+            setisLoading(false)
+        
         }catch(e){
             console.error(e)
         }
@@ -45,6 +49,7 @@ export const UserProvider = ({children}) =>{
             })
 
             setSelectedUSer(await response.json())
+            setisLoading(false)
             
             
 
@@ -62,9 +67,8 @@ export const UserProvider = ({children}) =>{
             })
             const data = (await response.json()) 
             setNewUserProfile(data.user)
-            // setUserlist(data.followUser)
-            // setpostlist(data.followUser)
-            
+            setisLoading(false)
+             
         }catch(e){
             console.error(e)
         }
@@ -78,6 +82,7 @@ export const UserProvider = ({children}) =>{
             const data = (await response.json())
  
             setUserDatabsePost(data.posts)
+            setisLoading(false)
 
         }catch(e){
             console.log(e)
@@ -95,6 +100,7 @@ export const UserProvider = ({children}) =>{
             })
 
             console.log(await response.json())
+            setisLoading(false)
 
         }catch(e){
             console.error(e)
@@ -112,7 +118,8 @@ export const UserProvider = ({children}) =>{
                         
             const data = await response.json()
             setNewUserProfile(data.user)
-            // setUserlist(data)
+            setisLoading(false)
+
             console.log(data,"New user Data")
             // setpostlist(data.posts)
 

@@ -96,7 +96,7 @@ const UserProfile = () => {
           </div>
 <div>
 <ol style={{listStyle:"none"}}>{filterList?.map((item)=>{
-            const{_id,content,likes,username,createdAt,userPic,likedBy}= item
+            const{_id,postPic,content,likes,username,createdAt,userPic,likedBy}= item
             return(
             <>
             <li className='postCard' key={_id}>
@@ -128,7 +128,9 @@ const UserProfile = () => {
                 </div>
                 
                  <Link to="/postDetails" style={{textDecoration:"none",padding:"0.5rem",color:"black"}} ><div onClick={()=>singlePostHandler(item)} style={{textAlign:'left',marginBottom:"0.5rem"}} ><p>{content}</p>
-                 <div style={{textAlign:"center"}} ><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} height={300} width={300} alt="" /></div>
+                 <div style={{textAlign:"center"}} >
+                  {postPic === null ? <p>{""}</p> :
+                  <img src={postPic} style={{height:"50%",width:"50%"}}  />}</div>
                  </div></Link>
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Loading from "../components/Loading";
 
 
 export const AuthContext = createContext()
@@ -7,6 +8,7 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({children}) =>{
  const [NewUserProfile,setNewUserProfile] = useState([])
+ const [isLoading,setisLoading] = useState(true)
  const Navigate = useNavigate();
  const [LoginPage,setLoginPage]=useState(false)
  const [SigninPage,setSigninPage]=useState(false)
@@ -101,12 +103,15 @@ export const AuthProvider = ({children}) =>{
             console.log(e)
         }
     }
-
+ 
+    // if(isLoading){
+    //     <Loading />
+    // }
   
      
 
 return (
-    <AuthContext.Provider value={{handleToSignUp,handleGuestToLogin,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
+    <AuthContext.Provider value={{handleToSignUp,isLoading,setisLoading,handleGuestToLogin,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
         {children}
     </AuthContext.Provider>
 )}

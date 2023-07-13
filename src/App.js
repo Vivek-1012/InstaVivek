@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import Suggestion from "./components/Suggestion";
 import Popup from "./components/Popup";
 import Input from "./components/Input";
-
+import { LuInstagram } from "react-icons/lu";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
       
       <nav className="navBar">
         
-        <div style={{color:"white",fontSize:"20px"}} > <span style={{fontWeight:"bold",color:"#00ADB5"}} >Insta</span>Vivek</div>
+        <div style={{color:"white",fontSize:"20px",display:"flex",alignItems:"center"}} > <span style={{fontWeight:"bold",color:"#00ADB5"}} >Insta</span>Vivek <span style={{fontSize:"25px"}} ><LuInstagram/></span></div>
         <div><Input /></div>
       </nav>
      

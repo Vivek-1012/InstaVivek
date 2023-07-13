@@ -10,8 +10,9 @@ import { useAuth } from '../context/AuthContext';
   
   return (
     <>
-<  div className='LoginparentpopupLayout' >   
+<  div className='LoginparentpopupLayout' >
    <div className='LoginPage ' >
+   <h2>SignIn</h2>   
 <div style={{display:"flex",flexDirection:"column"}} >
   <p>   <label htmlFor="username">Username</label></p>
         <input type="text" name="username" id="username"  onChange={(e)=> setuserLogin((prv)=>({...prv,username:e.target.value}))} autoComplete='off' />

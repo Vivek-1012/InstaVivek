@@ -23,9 +23,9 @@ margin-left: -200px;
   color:white;
   border-radius: 1rem;
   margin: 1rem;
-  background-color: #393E46;
-
-
+  /* background-color: #393E46; */
+ background-image: url(https://img.freepik.com/premium-vector/vector-futuristic-technology_184920-79.jpg);
+ 
 }
 .SignPage{
   position: fixed;
@@ -39,8 +39,8 @@ margin-left: -200px;
   color:white;
   border-radius: 1rem;
   margin: 1rem;
-  background-color: #463a39;
-
+  /* background-color: #463a39; */
+background-image: url(https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg?w=996&t=st=1689244100~exp=1689244700~hmac=6c4498b09c6d80e4c835f13d7e98464f9c586dff4c4e6afc549b84e36f710a89);
 }
 
 .newUserbtn:hover{
@@ -101,7 +101,10 @@ padding: 0.5rem;
  
 }
 
-.feedIcon p
+.feedIcon p{
+  font-size: 22px;
+  cursor: pointer;
+}
 
 .NavIcon{
     display: flex;

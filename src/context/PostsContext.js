@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useUser } from "./UserContext";
+import Loading from "../components/Loading";
 
 
 export const PostContext = createContext();
@@ -10,7 +11,7 @@ export const PostProvider = ({children}) =>{
  const token = localStorage.getItem("token");
 const [EditDiv,setEditDiv]=useState(false)
 const {NewUserProfile} =useAuth()
-
+const {isLoading,setisLoading} = useAuth()
 
  const [addNewPostValue,setAddNewPostValue]=useState()
  const [postlist,setpostlist] = useState([])
@@ -30,7 +31,8 @@ const {NewUserProfile} =useAuth()
 
              const postData = await response.json() 
              setpostlist(postData.posts) 
-        }catch(e){
+             setisLoading(false)
+            }catch(e){
             console.log(e)
         }
     }
@@ -58,7 +60,8 @@ const {NewUserProfile} =useAuth()
             const data =(await response.json())
             
             setpostlist(data.posts)
-            console.log(data.posts)
+            // setisLoading(false)
+            
         }catch(e){
             console.error(e)
         }
@@ -76,7 +79,8 @@ const {NewUserProfile} =useAuth()
           
             const data = await response.json()
             setpostlist(data.posts)
-
+            // setisLoading(false)
+             
         }catch(e){
             console.error(e)
         }
@@ -128,7 +132,8 @@ const {NewUserProfile} =useAuth()
              const postData =await response.json()
 
              setpostlist(postData.posts)
-
+            //  setisLoading(false)
+     
         }catch(e){
             console.error(e)
         }
@@ -151,7 +156,14 @@ const handlertoupdateEdit=(postId,newContent)=>{
           }
          
          
+if(isLoading){
+    return <div><Loading /></div>
+}
+
+ 
           const dischargeHandler=()=>setEditDiv(!EditDiv)
+
+
 return<PostContext.Provider value={{newContent,postId,dischargeHandler,EditDiv,editHandler,setEditDiv,setAddNewcontentValue,handlertoupdateEdit,addNewPostValue,handleToEdit,setAddNewPostValue,postlist,handleToAddPost,handleTODeletePost,singlePostHandler,singlePost,handleToLike,setpostlist,likedPostList,handleToDislike,token}}>
     {children}
 </PostContext.Provider>

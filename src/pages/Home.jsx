@@ -46,13 +46,13 @@ return (
       <p>Add pic</p>
     </div>
     
-   <button  onClick={()=>handleToAddPost(post)}> Add post</button>  
+   <button style={{padding:"0.5rem",cursor:"pointer",borderRadius:"0.5rem",background:"lightblue"}}  onClick={()=>handleToAddPost(post)}> Add post</button>  
    </div> 
       </p>
   
   
    <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{filterList?.map((item)=>{
-            const{_id,userPic,content,likes,username,createdAt,likedBy}= item
+            const{_id,userPic,content,likes,postPic,username,createdAt}= item
             return(
             <>
             <li className='postCard' key={_id}>
@@ -87,7 +87,9 @@ return (
             
                 
                  <Link to="/postDetails" style={{textDecoration:"none",padding:"0.5rem",color:"black"}} ><div onClick={()=>singlePostHandler(item)} ><p style={{textAlign:'left',marginBottom:"0.5rem"}} >{content}</p>
-                 <div style={{textAlign:"center"}} ><img src={`https://funkylife.in/wp-content/uploads/2021/06/whatsapp-dp-pic-24-scaled.jpg`} height={300} width={300} alt="" /></div>
+                 <div style={{textAlign:"center"}} >
+                  {postPic === null ? <p>HI</p> :
+                  <img src={postPic} style={{height:"50%",width:"50%"}}  />}</div>
                  </div></Link>
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 
@@ -109,7 +111,7 @@ return (
                 <div>
                 
                 </div>
-                {/* </div> */}
+                
             
 </>  )
 }
