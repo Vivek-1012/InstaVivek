@@ -72,4 +72,4 @@ const SinglePostDetails = () => {
   )
 }
 
-export default SinglePostDetails;s
+export default SinglePostDetails;
