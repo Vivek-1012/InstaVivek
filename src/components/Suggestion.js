@@ -7,10 +7,9 @@ export const Suggestion = () => {
 
   const {NewUserProfile} =useAuth()
   const {userlist,handleGetUserPost,handletoFollowUser,handleGetUser} = useUser();
-  const userDisplay = userlist
-  const userName = NewUserProfile?.following?.filter((lst)=>lst.username)
+  const userDisplay = userlist;
+ const notfollowedUsers = userlist.filter(({username}) => NewUserProfile?.following?.every(user => user.username !== username)).filter((user => user.username !== NewUserProfile.username));
  
-  
    return (
     <>
     
@@ -19,7 +18,7 @@ export const Suggestion = () => {
     
     </div>
     <div className='myComponent' > 
-    <ol  className='SuggestionLayout' >{userDisplay?.map((item)=>{
+    <ol  className='SuggestionLayout' >{notfollowedUsers?.map((item)=>{
       const {_id,firstName,lastName,username,userPic} = item
       return(
     <li  key={_id}   >
@@ -32,6 +31,7 @@ export const Suggestion = () => {
      <p style={{fontWeight:"bold",color:"black"}} > {firstName} {lastName}</p> <p style={{fontSize:"15px",color:"grey"}} >@{username}</p> 
      </div></div> </p></Link>
     
+  
     <button style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer"}} onClick={()=>{handletoFollowUser(item)}} >Follow</button>
     </div></div>
     </li>)})}

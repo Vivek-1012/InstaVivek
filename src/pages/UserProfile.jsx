@@ -19,12 +19,12 @@ const UserProfile = () => {
     // console.log(NewUserProfile)
     const filterList = postlist?.filter((lst=>lst.username === NewUserProfile?.username  ))
    
-     
+    //  console.log(NewUserProfile)
 
 
    const postId = NewUserProfile._id
 
-   console.log(newDetails) 
+  //  console.log(newDetails) 
    return (
     
     <>

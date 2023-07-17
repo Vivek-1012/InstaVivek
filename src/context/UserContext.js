@@ -10,15 +10,16 @@ export const userContext = createContext();
  
 export const UserProvider = ({children}) =>{
     const token = localStorage.getItem("token");
+const {setUserDatabsePost} = useAuth()
+
     const {setpostlist} = usePost();
     const {NewUserProfile,} = useAuth()
 const {isLoading,setisLoading} = useAuth()
     const [userlist,setUserlist] = useState([])
     const [selectedUser,setSelectedUSer] = useState([])
     const{setNewUserProfile} =useAuth()   
-   const [userDatabsePost,setUserDatabsePost]=useState([]) 
    const [newDetails,setnewDetails]=useState({
-    bio:"",website:"",userPic:``})
+    bio:NewUserProfile.bio,website:NewUserProfile.website,userPic:NewUserProfile.userPic})
   const postId = NewUserProfile._id
 
 
@@ -80,7 +81,7 @@ const {isLoading,setisLoading} = useAuth()
                 method:"GET"
             })
             const data = (await response.json())
- 
+            
             setUserDatabsePost(data.posts)
             setisLoading(false)
 
@@ -121,18 +122,6 @@ const {isLoading,setisLoading} = useAuth()
             setisLoading(false)
 
             console.log(data,"New user Data")
-            // setpostlist(data.posts)
-
-            // const responsePost = await fetch(`/api/posts/edit/${postId}`,{
-            //     method:"POST",
-            //     headers:({authorization: token }),
-            //     body: JSON.stringify({ postData:{userPic: newDetails.userPic} })
-            // })
-           
-          
-            // const dataPost = await responsePost.json()
-            // console.log(dataPost,"userEdited Post")
-            // setpostlist(dataPost.posts)
 
 
         }catch(e){
@@ -148,7 +137,7 @@ const {isLoading,setisLoading} = useAuth()
     useEffect(()=>{userList()},[])
     
   
-return <userContext.Provider value={{handlertoupdateProfileDetails,handleGetUserPost,userDatabsePost,newDetails,userlist,handleGetUser,selectedUser,handletoFollowUser,setnewDetails}} >
+return <userContext.Provider value={{handlertoupdateProfileDetails,handleGetUserPost,newDetails,userlist,handleGetUser,selectedUser,handletoFollowUser,setnewDetails}} >
         {children}
     </userContext.Provider>
 }

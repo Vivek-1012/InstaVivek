@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) =>{
  const Navigate = useNavigate();
  const [LoginPage,setLoginPage]=useState(false)
  const [SigninPage,setSigninPage]=useState(false)
-
+const [userDatabsePost,setUserDatabsePost] = useState()
  const [userRegistration,setUserRegistration]=useState({
     firstName:"",
     lastName:"",
@@ -111,7 +111,7 @@ export const AuthProvider = ({children}) =>{
      
 
 return (
-    <AuthContext.Provider value={{handleToSignUp,isLoading,setisLoading,handleGuestToLogin,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
+    <AuthContext.Provider value={{handleToSignUp,isLoading,userDatabsePost,setUserDatabsePost,setisLoading,handleGuestToLogin,setLoginPage,setSigninPage,LoginPage,SigninPage,NewUserProfile,setNewUserProfile,handleToLogin,userRegistration,setUserRegistration,setuserLogin}} >
         {children}
     </AuthContext.Provider>
 )}

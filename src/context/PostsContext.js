@@ -11,8 +11,8 @@ export const PostProvider = ({children}) =>{
  const token = localStorage.getItem("token");
 const [EditDiv,setEditDiv]=useState(false)
 const {NewUserProfile} =useAuth()
+const {setUserDatabsePost}=useAuth()
 const {isLoading,setisLoading} = useAuth()
-
  const [addNewPostValue,setAddNewPostValue]=useState()
  const [postlist,setpostlist] = useState([])
  const [ singlePost,setSinglePost] = useState([])
@@ -101,7 +101,7 @@ const {isLoading,setisLoading} = useAuth()
             
             console.log(postData,token)
             setpostlist(postData.posts)
-            
+            setUserDatabsePost(postData.posts)
         }catch(e){
             console.error(e)
         }
@@ -117,7 +117,7 @@ const {isLoading,setisLoading} = useAuth()
 
             const postData = await response.json() 
              setpostlist(postData.posts)
-            
+             setUserDatabsePost(postData.posts)
         }catch(e){
             console.error(e)
         }

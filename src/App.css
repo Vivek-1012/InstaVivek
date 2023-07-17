@@ -24,8 +24,11 @@ margin-left: -200px;
   border-radius: 1rem;
   margin: 1rem;
   /* background-color: #393E46; */
- background-image: url(https://img.freepik.com/premium-vector/vector-futuristic-technology_184920-79.jpg);
- 
+ background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20210115/pngtree-vector-dark-blue-geometric-cascading-back-image_520724.jpg);
+ /* height: 100%; */
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
 }
 .SignPage{
   position: fixed;
@@ -40,7 +43,8 @@ margin-left: -200px;
   border-radius: 1rem;
   margin: 1rem;
   /* background-color: #463a39; */
-background-image: url(https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg?w=996&t=st=1689244100~exp=1689244700~hmac=6c4498b09c6d80e4c835f13d7e98464f9c586dff4c4e6afc549b84e36f710a89);
+background-image: url(https://wallpaperaccess.com/full/1417846.jpg);
+
 }
 
 .newUserbtn:hover{
@@ -320,6 +324,34 @@ margin-left: -200px;
   .sideNavbaricon:active{
     background-color: white;
   }
+  .myComponent{
+    width: 13rem;
+    height: 34rem;
+    overflow-x: hidden;
+    /* overflow-y: scroll; */
+    
+   
+  }
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 
   .firstNameProfile{
    font-size:18px;

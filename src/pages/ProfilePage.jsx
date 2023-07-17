@@ -11,18 +11,21 @@ import { SlGlobe } from "react-icons/sl";
 
 // import { useUser } from '../context/UserContext';
 import Suggestion from '../components/Suggestion';
+import { useAuth } from '../context/AuthContext';
 
 const ProfilePage = () => {   
-   
-    const{selectedUser,userDatabsePost,handletoFollowUser} = useUser();
-    const {postlist,editHandler,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost} = usePost()
+   const {NewUserProfile,userDatabsePost,setUserDatabsePost} = useAuth()
+    const{selectedUser,userlist,handletoFollowUser} = useUser();
+    const {editHandler,postlist,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost} = usePost()
     const{bookmarklist,handleToAddBookmark, handleToDeletBookmark }=useBookmark();
      
      
     const ProfileDetails = selectedUser.user
-     
-           
+    const notfollowedUsers = userlist.filter(({username}) => NewUserProfile?.following?.every(user => user.username !== username)).filter((user => user.username === NewUserProfile.username))
+ const filterPost = postlist?.filter((lst=>lst.username === ProfileDetails?.username  ))
     
+//  style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer",alignItems:"flex-end"}}
+     
      return (
 <>
 <div style={{display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}} >
@@ -38,7 +41,8 @@ const ProfilePage = () => {
          </div>
          <div style={{display:"flex",flexDirection:"column",alignItems:"flex-start",justifyContent:"space-evenly",textAlign:"left"}} >
          <div>
-<button style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer",alignItems:"flex-end"}} onClick={()=>{handletoFollowUser()}} >Follow</button>
+{/* {userlist.filter(({username}) => NewUserProfile?.following?.every(user => user.username !== username ? <p>true</p>:<p>false</p>))} */}
+<button onClick={()=>{handletoFollowUser()}} >Follow</button>
 
 </div>
          <div>
@@ -83,7 +87,7 @@ const ProfilePage = () => {
 
           </div>
 <div>
-<ol style={{listStyle:"none"}}>{userDatabsePost?.map((item)=>{
+<ol style={{listStyle:"none"}}>{filterPost?.map((item)=>{
             const{_id,content,likes,userPic,postPic,username,createdAt,likedBy}= item
             return(
             <>
@@ -121,7 +125,7 @@ const ProfilePage = () => {
                 
                 <div className='feedIcon' style={{display:"flex", flexWrap:"wrap",justifyContent:"space-evenly"}} > 
                     <p>
-                    {likes.likedBy?.find((lst)=>lst.username === ProfileDetails?.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes.likeCount >0 && likes.likeCount}
+                    {likes.likedBy?.find((lst)=>lst.username === NewUserProfile?.username)  ?  <FcLike  onClick={()=>handleToDislike(item)} />:< SlHeart onClick={()=>handleToLike(item)} /> }{likes.likeCount >0 && likes.likeCount}
                     </p>
                     <p>
                  <FcComments /> 
@@ -136,50 +140,7 @@ const ProfilePage = () => {
                 </li> </>)})}</ol>
                 </div>
                 </div>
-                {/* <div className='parent' >
-                  Cancel
-        <div className='followersList'>
-          folowers
-          <div>
-            <ol>{ProfileDetails.followers?.map((item)=>{
-      const {_id,firstName,lastName,username} = item
-      return(
-    <li key={_id}  >
-    <div style={{borderBottom:"1px solid", paddingBottom:"0.5rem"}} > 
-    <Link to="/profile"  ><p onClick={()=>handleGetUser(item)} > DP {firstName} {lastName}</p></Link>
-    
-    
-    </div>
-    </li>)})}
-
-            </ol>
-          </div>
-          
-        </div>
-        
-        </div> */}
-        {/* <div className='parent' >
-          cancel
-        <div className='followersList'>
-          following
-          <div>
-            <ol>{ProfileDetails.following?.map((item)=>{
-      const {_id,firstName,lastName,username} = item
-      return(
-    <li key={_id}  >
-    <div style={{borderBottom:"1px solid", paddingBottom:"0.5rem"}} > 
-    <Link to="/profile"  ><p onClick={()=>handleGetUser(item)} > DP {firstName} {lastName}</p></Link>
-    <p>@{username}</p>
-    
-    </div>
-    </li>)})}
-
-            </ol>
-          </div>
-          
-        </div>
-        
-        </div> */}
+                
         </div> 
         </div> 
            
