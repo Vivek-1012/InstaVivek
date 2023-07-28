@@ -14,8 +14,8 @@ import Suggestion from '../components/Suggestion';
 import { useAuth } from '../context/AuthContext';
 
 const ProfilePage = () => {   
-   const {NewUserProfile,userDatabsePost,setUserDatabsePost} = useAuth()
-    const{selectedUser,userlist,handletoFollowUser} = useUser();
+   const {NewUserProfile,userDatabsePost} = useAuth()
+    const{selectedUser,userlist,handletoFollowUser,handletoUnfollowUser} = useUser();
     const {editHandler,postlist,singlePostHandler,handleToDislike,handleToLike,handleTODeletePost} = usePost()
     const{bookmarklist,handleToAddBookmark, handleToDeletBookmark }=useBookmark();
      
@@ -24,6 +24,8 @@ const ProfilePage = () => {
     const notfollowedUsers = userlist.filter(({username}) => NewUserProfile?.following?.every(user => user.username !== username)).filter((user => user.username === NewUserProfile.username))
  const filterPost = postlist?.filter((lst=>lst.username === ProfileDetails?.username  ))
     
+   const item = ProfileDetails
+   console.log(item,"item id ")
 //  style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer",alignItems:"flex-end"}}
      
      return (
@@ -41,8 +43,8 @@ const ProfilePage = () => {
          </div>
          <div style={{display:"flex",flexDirection:"column",alignItems:"flex-start",justifyContent:"space-evenly",textAlign:"left"}} >
          <div>
-{/* {userlist.filter(({username}) => NewUserProfile?.following?.every(user => user.username !== username ? <p>true</p>:<p>false</p>))} */}
-<button onClick={()=>{handletoFollowUser()}} >Follow</button>
+
+{ userlist.filter(({username}) => NewUserProfile?.following?.every(user => user.username !== username))? <button onClick={()=>handletoFollowUser(item)}>Follow</button>:<button onClick={()=>handletoUnfollowUser(item)} >Unfollow</button>}
 
 </div>
          <div>

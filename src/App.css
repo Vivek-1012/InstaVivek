@@ -211,13 +211,18 @@ color: white;
     margin-right: 1rem;
   font-size: 18px;
   border-radius: 1rem;
-  width: 25%;
+  width: 10rem;
   cursor: pointer;
   background-color:indianred  ;
   }
   .feedButton:hover{
     background-color: rgb(204, 113, 113);
     color: white;
+  }
+
+  .feedButton:active{
+    color: black;
+    background-color: chocolate;
   }
   
   .dropdown-content p {
@@ -241,6 +246,17 @@ color: white;
   
   .dropdown:hover .dropbtn {background-color:#393E46;}
 
+  .ProfilePopupLayout{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ProfilePopupElemants{
+    /* padding: 0.3rem; */
+    margin: 0.3rem;
+    /* background-color: black; */
+  }
+  
 
   .screenLayout{
     display: flex;
@@ -273,7 +289,8 @@ color: white;
     padding: 10px;
     position: fixed;
     background-color: white;
-    height: 22vh;
+    height: 25vh;
+    padding: 0.3rem;
        top:10rem;
     left: 50%; 
 width: 400px; 
@@ -377,6 +394,13 @@ margin-left: -200px;
   .ContentpagesLayout{
     width: 30rem;
   }
+
+  .addContentLayout{
+    background-color:white;
+    padding-bottom:1rem;
+    border-radius:1rem;
+    width:28rem
+  }
   @media only screen and (max-width: 600px) { 
     .sideNavbar{
       display: flex;
@@ -392,6 +416,10 @@ margin-left: -200px;
       padding: 1rem;
      justify-content: space-evenly;
     }
+    .popupLayout{
+     width: 24rem;
+     left:54%;
+    }
     .dropdown-content {
      
       right: 0;
@@ -403,6 +431,7 @@ margin-left: -200px;
     list-style: none;
     margin-bottom: 7rem;
    flex-direction: row;
+   align-items: center;
   }
   .postCard{
     width: 20rem;
@@ -418,8 +447,11 @@ margin-left: -200px;
   .profilePageCard{
   width: 21rem;
   }
+  .addContentLayout{
+    width:22rem;
+  }
   .myComponent{
-    width: 24rem;
+    width: 23rem;
     height: 14rem;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -442,6 +474,8 @@ margin-left: -200px;
   top:5rem;
 
 }
-
+.firstNameProfile{
+  font-size: 15px;
+}
 
   }

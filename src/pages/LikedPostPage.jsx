@@ -25,7 +25,7 @@ return (
   
 
 
-<h2 style={{color:"white"}} >Latests Activity </h2>
+<h2 style={{color:"white"}} >Latest Activity </h2>
 
  <div><Popup/>  </div>
 <div className='LikedPagelayout' >

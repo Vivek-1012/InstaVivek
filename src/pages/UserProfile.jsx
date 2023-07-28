@@ -12,32 +12,78 @@ import { SlGlobe } from "react-icons/sl";
 const UserProfile = () => {
       
     const {NewUserProfile} = useAuth()
-    const {postlist,setAddNewcontentValue,singlePostHandler,handleToDislike,editHandler,handleToLike,handleTODeletePost} = usePost()
+    const {postlist,setAddNewcontentValue,singlePostHandler,handleGetUserPost,handleToDislike,editHandler,handleToLike,handleTODeletePost} = usePost()
     const{bookmarklist,handleToAddBookmark, handleToDeletBookmark }=useBookmark(); 
-    const {newDetails,handleGetUser,setnewDetails,userlist,handlertoupdateProfileDetails} = useUser();
+    const {newDetails,handleGetUser,setnewDetails,userlist, handletoUnfollowUser,handlertoupdateProfileDetails} = useUser();
     const [EditProfileDiv,setEditProfileDiv] =useState(false);
-    // console.log(NewUserProfile)
     const filterList = postlist?.filter((lst=>lst.username === NewUserProfile?.username  ))
+   const [followProfileDiv,setFollowProfileDiv] = useState(false)
+    
+
+  const postId = NewUserProfile._id
+
+  console.log(newDetails)
+ console.log(NewUserProfile)
+
+  const handleProfile = (e) =>{
+
+    const type = (e.target?.files[0]?.type)
+    if(e.target?.files[0]?.type === undefined) return;
+    if(type === "image/png" || type === "image/jpeg" || type === "image/jpg"){
+        setnewDetails({...newDetails,userPic:URL.createObjectURL(e.target.files[0])})
+    }else{
+      console.log("file Type not expected")
+    }
+   }
    
-    //  console.log(NewUserProfile)
-
-
-   const postId = NewUserProfile._id
-
-  //  console.log(newDetails) 
    return (
     
     <>
-   <div>{ EditProfileDiv &&   <div> <div className='popupLayout' > 
-    <input type="text"  placeholder='Add avatar'  onChange={(event)=>setnewDetails((prv)=>({...prv,userPic:event.target.value}))} />
-
-<input type="text"   placeholder='Write bio....'  onChange={(event)=>setnewDetails((prv)=>({...prv, bio: event.target.value}))} />
+   <div>{ EditProfileDiv &&   <div> <div className='popupLayout'>
+    <div className='ProfilePopupLayout' >
+     <label>    
+      <input className='ProfilePopupElemants' style={{display:"none"}} accept='image/*' type="file" id="file" placeholder='Add avatar'  onChange={(e)=>handleProfile(e)} />
+     <div>Updated Profile Pic</div>
+     </label>
+<label>
+  Add Bio
+<input type="text"  className='ProfilePopupElemants'  placeholder='Write bio....'  onChange={(event)=>setnewDetails((prv)=>({...prv, bio: event.target.value}))} />
+</label>
+<label>
+  Add website
+<input type="text" className='ProfilePopupElemants'  placeholder='Enter website...'  onChange={(event)=>setnewDetails((prv)=>({...prv, website: event.target.value}))} />
+</label>
+<button  className='ProfilePopupElemants' style={{backgroundColor:"#87BBA2",padding:"0.3rem 0.6rem"}} onClick={()=>{handlertoupdateProfileDetails(postId,newDetails);setEditProfileDiv(false)}} >Update Post</button>
+<button className='ProfilePopupElemants' style={{backgroundColor:"#C9E4CA",padding:"0.3rem 0.6rem"}} onClick={()=>setEditProfileDiv(!EditProfileDiv)} >Discharge</button>
+</div></div> </div> }</div>     
+{/* Following div */}
+<div>{ followProfileDiv &&   <div> <div className='popupLayout'>
+    <div className='ProfilePopupLayout' >
+      <button onClick={()=>setFollowProfileDiv(false)} >Close</button>
+    <ol style={{listStyle:"none",display:"flex",flexDirection:"column"}} >{NewUserProfile?.following?.map((item)=>{
+      const {_id,firstName,lastName,username,userPic} = item
+      return(
+    <li  key={_id}   >
+    <div style={{width:"20rem"}} >
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}} >  
+    <Link to="/profile"  ><p onClick={()=>{handleGetUser(item);handleGetUserPost(item)}}>
+    <div style={{display:"flex"}} >
+      <div >
+    <img src={userPic} alt="" height={40} width={40} style={{borderRadius:"50%"}} /></div>
+    <div> 
+     <p style={{fontWeight:"bold",color:"black"}} > {firstName} {lastName}</p>
+      <p style={{fontSize:"15px",color:"grey"}} >@{username}</p> 
+     </div>
+     
+     </div> </p></Link>
+    
   
-<input type="text"  placeholder='Enter website...'  onChange={(event)=>setnewDetails((prv)=>({...prv, website: event.target.value}))} />
+    <button style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer"}} onClick={()=>{ handletoUnfollowUser(item)}} >Unfollow</button>
+    </div></div>
+    </li>)})}
+    </ol>
+</div></div> </div> }</div>  
 
-<button onClick={()=>handlertoupdateProfileDetails(postId,newDetails)} >update Post</button>
-<button onClick={()=>setEditProfileDiv(!EditProfileDiv)} >Discharge</button>
-</div> </div> }</div>     
 
     <div style={{display:"flex",justifyContent:"space-evenly",flexWrap:"wrap"}} >
     <div className='profileLayout'  >
@@ -77,7 +123,7 @@ const UserProfile = () => {
         <div style={{justifyContent:"center",textAlign:"center"}} >
         
        
-        <p style={{color:"black",fontSize:"20px"}} > <strong>Posts</strong>: {filterList?.length}    <strong>Followers</strong>: {NewUserProfile?.followers?.length}    <strong>Following</strong>: {NewUserProfile?.following?.length}  </p>
+        <p style={{color:"black",fontSize:"20px"}} > <strong>Posts</strong>: {filterList?.length}    <strong>Followers</strong>: {NewUserProfile?.followers?.length}    <strong style={{cursor:"pointer"}} onClick={()=>setFollowProfileDiv(true)} >Following</strong>: {NewUserProfile?.following?.length}  </p>
         </div>
         </div>
         </div>

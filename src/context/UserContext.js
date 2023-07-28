@@ -90,7 +90,7 @@ const {isLoading,setisLoading} = useAuth()
         }
     }
 
-    const handletoUnFollowUser = async(item)=>{
+    const handletoUnfollowUser = async(item)=>{
         try{
 
             const response = await fetch(`/api/users/unfollow/${item._id}`,{
@@ -100,8 +100,8 @@ const {isLoading,setisLoading} = useAuth()
 
             })
 
-            console.log(await response.json())
-            setisLoading(false)
+            const data = await response.json()
+            setNewUserProfile(data.user)
 
         }catch(e){
             console.error(e)
@@ -137,7 +137,7 @@ const {isLoading,setisLoading} = useAuth()
     useEffect(()=>{userList()},[])
     
   
-return <userContext.Provider value={{handlertoupdateProfileDetails,handleGetUserPost,newDetails,userlist,handleGetUser,selectedUser,handletoFollowUser,setnewDetails}} >
+return <userContext.Provider value={{handletoUnfollowUser,handlertoupdateProfileDetails,handleGetUserPost,newDetails,userlist,handleGetUser,selectedUser,handletoFollowUser,setnewDetails}} >
         {children}
     </userContext.Provider>
 }

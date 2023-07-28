@@ -31,7 +31,7 @@ const Input = () => {
     
    { query && searchUser &&  searchUser.map((item)=> {
     const {_id,firstName,lastName,username,userPic} = item;
-    return(<li style={{width:"13rem",listStyle:"none" }} key={_id} >
+    return(<li style={{width:"11rem",listStyle:"none" }} key={_id} >
        <div style={{ display:"flex",background:"black",color:"white",padding:"10px"}} >
         <div>
             <img src={userPic} height={50} width={50} />

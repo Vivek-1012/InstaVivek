@@ -20,6 +20,12 @@ const {isLoading,setisLoading} = useAuth()
  const post = singlePost.content
  const postId =singlePost._id 
  const [newContent,setAddNewcontentValue]=useState(post)
+ const [newPostItem,setNewPostItem] = useState({
+    textContent:null,
+    imageContent:null,
+    videoContent:null
+
+})
 // const {newDetails} = useUser() 
  
  const postList = async()=>{
@@ -50,12 +56,12 @@ const {isLoading,setisLoading} = useAuth()
         }
     }
 
-    const handleToAddPost = async(post)=>{
+    const handleToAddPost = async(newPostItem)=>{
         try{
             const response = await fetch(`/api/posts`,{
               method:"POST",
               headers:({authorization: token }),
-              body: JSON.stringify({ postData: {content: post, userPic: NewUserProfile.userPic } })
+              body: JSON.stringify({ postData: {content: newPostItem.textContent, userPic: NewUserProfile.userPic , postPic:newPostItem.imageContent} })
             })
             const data =(await response.json())
             
@@ -160,11 +166,13 @@ if(isLoading){
     return <div><Loading /></div>
 }
 
- 
           const dischargeHandler=()=>setEditDiv(!EditDiv)
 
+          const dateNew = new Date(postlist.createdAt)
+          
+          const  formatDate = dateNew.toString().slice(0,21)
 
-return<PostContext.Provider value={{newContent,postId,dischargeHandler,EditDiv,editHandler,setEditDiv,setAddNewcontentValue,handlertoupdateEdit,addNewPostValue,handleToEdit,setAddNewPostValue,postlist,handleToAddPost,handleTODeletePost,singlePostHandler,singlePost,handleToLike,setpostlist,likedPostList,handleToDislike,token}}>
+return<PostContext.Provider value={{formatDate,newContent,newPostItem,setNewPostItem,postId,dischargeHandler,EditDiv,editHandler,setEditDiv,setAddNewcontentValue,handlertoupdateEdit,addNewPostValue,handleToEdit,setAddNewPostValue,postlist,handleToAddPost,handleTODeletePost,singlePostHandler,singlePost,handleToLike,setpostlist,likedPostList,handleToDislike,token}}>
     {children}
 </PostContext.Provider>
 
