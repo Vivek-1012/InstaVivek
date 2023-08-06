@@ -21,12 +21,7 @@ const {NewUserProfile} =useAuth()
 const [trendingList,setTrendingList] =useState([...postlist])
 
 const handlerForLatest = (postlist) =>{
-  // const sortedList = [...trendingList].sort((a,b)=>b.likes.likeCount-a.likes.likeCount);
-const updatedList =  [...postlist].sort((a,b)=>b.likes.likeCount-a.likes.likeCount);
-console.log(updatedList,"sorted List")
-  // setTrendingList(sortedList)
-  // console.log(sortedList,"sorted List")
-  setTrendingList(updatedList);
+ 
  
 }
  
@@ -36,41 +31,42 @@ const [order,setorder] = useState("")
 const handlerForTrending=(e) =>setorder(e.target.value)
 if(order === "trending"){
   List = [...postlist].sort((a,b)=>b.likes.likeCount-a.likes.likeCount)
+  console.log("order by trending")
 }
-else{
-  // List = [...postlist].sort
+if(order === "latest"){
+  List = [...postlist].sort((a,b)=>a.updatedAt - b.updatedAt)
+  console.log(List,"sorted by") 
+  console.log("order by latest")
 }
 
 return (
-  <>
-  
-
-        
+  <>    
         
         <div className='Feedlayout' > 
         <div className='feedpost' >
         <div style={{display:"flex",justifyContent:"center"}} >
 <label>
-<input type="radio" style={{display:"none"}} value="trending" checked={order === "trending"} onChange={handlerForTrending} name="trending" id="trending" />
-      <div className='feedButton'>Latest</div>
+<input type="radio"  value="trending" checked={order === "trending"} onChange={handlerForTrending} name="trending" id="trending" />
+      <div className='feedButton'>Trending 🔥</div>
       </label>
-      <button className='feedButton' onClick={()=>handlerForLatest(postlist)} >Trending</button>
-     
+ <label>
+ <input type="radio"  value="latest" checked={order === "latest"} onChange={handlerForTrending} name="latest" id="latest" />
+      <div className='feedButton' >Latest ⏰</div>
+      </label>
     </div>
     <ol style={{display:"flex",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{List?.map((item)=>{
-            const{_id,postPic,content,likes,username,userPic,createdAt,}= item
+            const{_id,postPic,content,likes,username,updatedAt,userPic,createdAt,}= item
            console.log(createdAt)
             
            const dateNew = new Date(createdAt)
-           console.log(dateNew.toString().slice(0,21))
-           const  formatDate = dateNew.toString().slice(0,21)
+           const formatDate = dateNew.toString().slice(0,21)
             return(
             <>
             
             <li className='postCard' key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
-                <div style={{display:"flex"}} >
+                <div style={{display:"flex",textAlign:"left"}} >
                 <div >
                 {username === NewUserProfile.username ?  <img src={NewUserProfile.userPic} style={{borderRadius:"2rem"}} height={50} width={50} /> :<img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} />
              } </div>

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePost } from "./PostsContext";
 import { useAuth } from "./AuthContext";
-import Loading from "../components/Loading";
+
 
 
 export const userContext = createContext();
@@ -19,7 +19,7 @@ const {isLoading,setisLoading} = useAuth()
     const [selectedUser,setSelectedUSer] = useState([])
     const{setNewUserProfile} =useAuth()   
    const [newDetails,setnewDetails]=useState({
-    bio:NewUserProfile.bio,website:NewUserProfile.website,userPic:NewUserProfile.userPic})
+    bio:NewUserProfile.bio, website:NewUserProfile.website, userPic:NewUserProfile.userPic})
   const postId = NewUserProfile._id
 
 

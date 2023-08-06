@@ -94,4 +94,21 @@ export const posts = [
     website:"happines.com",
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      "happy",
+      userPic:`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDlUMPqVhHgyPKKgMrM5dOdhhRDNeYcjgZwg&usqp=CAU`,
+      postPic:`https://blog.hubspot.com/hubfs/image-png-Jun-15-2023-03-13-10-6051-PM.png`,
+      likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    username: "Jameshill",
+    createdAt: formatDate(),
+    bio:"Life is strange",
+    website:"happines.com",
+    updatedAt: formatDate(),
+  }
 ];

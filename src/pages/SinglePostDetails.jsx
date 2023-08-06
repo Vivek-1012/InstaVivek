@@ -33,7 +33,7 @@ const SinglePostDetails = () => {
             <li className='postCard' key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
-                <div style={{display:"flex"}} >
+                <div style={{display:"flex",textAlign:"left"}} >
                 <div>
                   { username === NewUserProfile?.username ?  <img src={ NewUserProfile?.userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /> :  <img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /> }
                  

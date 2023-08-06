@@ -57,10 +57,10 @@ const UserProfile = () => {
 <button className='ProfilePopupElemants' style={{backgroundColor:"#C9E4CA",padding:"0.3rem 0.6rem"}} onClick={()=>setEditProfileDiv(!EditProfileDiv)} >Discharge</button>
 </div></div> </div> }</div>     
 {/* Following div */}
-<div>{ followProfileDiv &&   <div> <div className='popupLayout'>
+<div>{ followProfileDiv &&   <div> <div className='FollowingPopupLayout'>
     <div className='ProfilePopupLayout' >
       <button onClick={()=>setFollowProfileDiv(false)} >Close</button>
-    <ol style={{listStyle:"none",display:"flex",flexDirection:"column"}} >{NewUserProfile?.following?.map((item)=>{
+    { NewUserProfile?.following?.length === 0 ? <div> You are not following...! </div> :  <ol style={{listStyle:"none",display:"flex",flexDirection:"column"}} >{NewUserProfile?.following?.map((item)=>{
       const {_id,firstName,lastName,username,userPic} = item
       return(
     <li  key={_id}   >
@@ -81,7 +81,7 @@ const UserProfile = () => {
     <button style={{padding:" 0.2rem 0.4rem 0.2rem 0.4rem ",borderRadius:"1rem",cursor:"pointer"}} onClick={()=>{ handletoUnfollowUser(item)}} >Unfollow</button>
     </div></div>
     </li>)})}
-    </ol>
+    </ol>}
 </div></div> </div> }</div>  
 
 
@@ -143,16 +143,18 @@ const UserProfile = () => {
 <div>
 <ol style={{listStyle:"none"}}>{filterList?.map((item)=>{
             const{_id,postPic,content,likes,username,createdAt,userPic,likedBy}= item
+                const dateNew = new Date(createdAt)
+            const formatDate = dateNew.toString().slice(0,21)
             return(
             <>
             <li className='postCard' key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
-                <div style={{display:"flex"}} >
+                <div style={{display:"flex",textAlign:"left"}} >
 
 
                 <div><img src={NewUserProfile.userPic} style={{borderRadius:"2rem"}} height={50} width={50} alt="" /></div>
-                <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
+                <div> <p style={{fontWeight:"bold"}} >{username}</p>{formatDate}</div>
                 
                 </div>    
                 <div>

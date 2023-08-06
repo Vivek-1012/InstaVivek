@@ -34,7 +34,7 @@ export const users = [
     _id: uuid(),
     firstName: "Harshit",
     userPic:`https://i.pinimg.com/474x/94/f1/c2/94f1c21e7e57eb2beb87aa70fe35c231.jpg`,
-    lastName: "Yadav",
+    lastName: "singh",
     username: "harshityadav",
     password: "harshityadav123",
     createdAt: formatDate(),
@@ -90,5 +90,17 @@ export const users = [
     bio:"happysoul",
     website:"happines.com",
   },
+  {
+    _id: uuid(),
+    firstName:"James",
+    userPic:`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDlUMPqVhHgyPKKgMrM5dOdhhRDNeYcjgZwg&usqp=CAU`,
+    lastName: "Hill",
+    username: "Jameshill",
+    password: "Jameskumar123",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    bio:"happy life",
+    website:"happines.com",
+  }
 
 ];

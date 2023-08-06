@@ -28,16 +28,19 @@ return (<>
     <div className='LikedPagelayout' >
   <div style={{display: "flex",alignContent:"center",justifyContent:"center"}} >
   <ol style={{display:"flex",listStyle:"none",justifyContent:"space-between",flexDirection:"column",alignItems: "center",listStyle:"none",display:"flex",justifyContent:"center"}}>{bookmarkPostList?.map((item)=>{
-            const{_id,content,likes,postPic,username,userPic,createdAt,likedBy}= item
+            const{_id,content,likes,postPic,username,userPic,createdAt,likedBy}= item;
+            
+           const dateNew = new Date(createdAt)
+           const formatDate = dateNew.toString().slice(0,21)
             return(
             <>
             <li className='postCard' style={{listStyle:'none'}} key={_id}>
             <div className='postCardHeading' >
               <div style={{display:"flex",justifyContent:"space-between"}} >
-                <div style={{display:"flex"}} >
+                <div style={{display:"flex",textAlign:"left"}} >
                 <div>  {username === NewUserProfile.username ?  <img src={NewUserProfile.userPic} style={{borderRadius:"2rem"}} height={50} width={50} /> :<img src={userPic} style={{borderRadius:"2rem"}} height={50} width={50} />
              }</div>
-                <div> <p style={{fontWeight:"bold"}} >{username}</p>..{createdAt}</div>
+                <div> <p style={{fontWeight:"bold"}} >{username}</p>{formatDate}</div>
                 
                 </div>    
                 <div>

@@ -59,7 +59,7 @@ const [userDatabsePost,setUserDatabsePost] = useState()
 
             const response = await fetch("/api/auth/login",{
              method:"POST",
-             body: JSON.stringify({username:"harshityadav",password:"harshityadav123"})
+             body: JSON.stringify({username:"Jameshill",password:"Jameskumar123"})
             })
             if(response.status === 200){
                 const {foundUser,encodedToken}= await response.json()

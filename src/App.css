@@ -282,6 +282,21 @@ color: white;
   width: 100%;
   opacity: 0.8;
   }
+
+  .FollowingPopupLayout{
+    
+    
+    border: 3px solid black;
+    padding: 10px;
+    position: fixed;
+    background-color: white;
+    /* height: 25vh; */
+    padding: 0.3rem;
+       top:10rem;
+    left: 50%; 
+width: 400px; 
+margin-left: -200px;
+  }
   .popupLayout{
     
     
